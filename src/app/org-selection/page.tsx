@@ -1,11 +1,9 @@
-'use client';
+import { OrganizationList } from '@clerk/nextjs';
 
-import { OrganizationSwitcher, UserButton } from '@clerk/nextjs';
-
-export default function Home() {
+export default function OrgSelectionPage() {
   return (
-    <>
-      <OrganizationSwitcher
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <OrganizationList
         hidePersonal
         afterCreateOrganizationUrl="/"
         afterSelectOrganizationUrl="/"
@@ -16,7 +14,6 @@ export default function Home() {
           },
         }}
       />
-      <UserButton />
-    </>
+    </div>
   );
 }
