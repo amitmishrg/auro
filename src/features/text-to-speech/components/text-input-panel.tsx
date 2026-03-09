@@ -50,7 +50,9 @@ export function TextInputPanel() {
         {/* Mobile layout */}
         <div className="flex flex-col gap-3 lg:hidden">
           <div className="flex items-center gap-2">
-            <SettingsDrawer>{/* <VoiceSelectorButton /> */}</SettingsDrawer>
+            <SettingsDrawer>
+              <VoiceSelectorButton />
+            </SettingsDrawer>
             <HistoryDrawer />
           </div>
           <GenerateButton

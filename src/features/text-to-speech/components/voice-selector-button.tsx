@@ -12,6 +12,15 @@ import { useTTSVoices } from '../contexts/tts-voices-context';
 import { ttsFormOptions } from './text-to-speech-form';
 
 export function VoiceSelectorButton() {
+  const { allVoices } = useTTSVoices();
+
+  const form = useTypedAppFormContext(ttsFormOptions);
+  const voiceId = useStore(form.store, (s) => s.values.voiceId);
+
+  const currentVoice = allVoices.find((v) => v.id === voiceId) ?? allVoices[0];
+
+  const buttonLabel = currentVoice?.name ?? 'Select voice';
+
   return (
     <DrawerTrigger asChild>
       <Button
