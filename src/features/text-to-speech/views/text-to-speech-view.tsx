@@ -21,7 +21,7 @@ export function TextToSpeechView({
   const trpc = useTRPC();
   const { data: voices } = useSuspenseQuery(trpc.voices.getAll.queryOptions());
 
-  const { custom: customVoices, system: systemVoices } = voices;
+  const { custom: customVoices = [], system: systemVoices = [] } = voices;
 
   const allVoices = [...customVoices, ...systemVoices];
   const fallbackVoiceId = allVoices[0]?.id ?? '';
