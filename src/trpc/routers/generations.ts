@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import { z } from 'zod';
 import { env } from '@/lib/env';
 import { TRPCError } from '@trpc/server';
@@ -93,11 +94,11 @@ export const generationsRouter = createTRPCRouter({
         parseAs: 'arrayBuffer',
       });
 
-      //   Sentry.logger.info('Generation started', {
-      //     orgId: ctx.orgId,
-      //     voiceId: input.voiceId,
-      //     textLength: input.text.length,
-      //   });
+      Sentry.logger.info('Generation started', {
+        orgId: ctx.orgId,
+        voiceId: input.voiceId,
+        textLength: input.text.length,
+      });
 
       if (error) {
         throw new TRPCError({
@@ -148,10 +149,10 @@ export const generationsRouter = createTRPCRouter({
           },
         });
 
-        // Sentry.logger.info('Audio generated', {
-        //   orgId: ctx.orgId,
-        //   generationId: generation.id,
-        // });
+        Sentry.logger.info('Audio generated', {
+          orgId: ctx.orgId,
+          generationId: generation.id,
+        });
       } catch {
         if (generationId) {
           await prisma.generation
@@ -163,10 +164,10 @@ export const generationsRouter = createTRPCRouter({
             .catch(() => {});
         }
 
-        // Sentry.logger.error('Generation failed', {
-        //   orgId: ctx.orgId,
-        //   voiceId: input.voiceId,
-        // });
+        Sentry.logger.error('Generation failed', {
+          orgId: ctx.orgId,
+          voiceId: input.voiceId,
+        });
 
         throw new TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
