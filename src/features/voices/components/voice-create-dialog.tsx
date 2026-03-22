@@ -21,7 +21,7 @@ import {
 import { useIsMobile } from '@/hooks/use-mobile';
 import { VoiceCreateForm } from './voice-create-form';
 import { Button } from '@/components/ui/button';
-// import { useCheckout } from '@/features/billing/hooks/use-checkout';
+import { useCheckout } from '@/features/billing/hooks/use-checkout';
 import { useCallback } from 'react';
 import { toast } from 'sonner';
 
@@ -38,23 +38,22 @@ export function VoiceCreateDialog({
 }: VoiceCreateDialogProps) {
   const isMobile = useIsMobile();
 
-  //   const { checkout } = useCheckout();
+  const { checkout } = useCheckout();
 
   const handleError = useCallback(
     (message: string) => {
       if (message === 'SUBSCRIPTION_REQUIRED') {
         toast.error('Subscription required', {
-          //   action: {
-          //     label: 'Subscribe',
-          //     onClick: () => checkout(),
-          //   },
+          action: {
+            label: 'Subscribe',
+            onClick: () => checkout(),
+          },
         });
       } else {
         toast.error(message);
       }
     },
-    // [checkout],
-    [],
+    [checkout],
   );
 
   if (isMobile) {
