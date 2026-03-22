@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Inter } from 'next/font/google';
 import { Toaster } from '@/components/ui/sonner';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
@@ -36,7 +37,7 @@ export default function RootLayout({
           <body
             className={`${inter.variable} ${geistMono.variable} antialiased`}
           >
-            {children}
+            <NuqsAdapter>{children}</NuqsAdapter>
             <Toaster />
           </body>
         </html>
