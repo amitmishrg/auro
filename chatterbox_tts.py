@@ -21,7 +21,7 @@ import modal
 
 # R2 cloud bucket mount (read-only, replaces Modal Volume)
 R2_BUCKET_NAME = "auro-app"
-R2_ACCOUNT_ID = "8d109db466ff07bec6acbe07ef1c1dd3"
+R2_ACCOUNT_ID = "**"
 R2_MOUNT_PATH = "/r2"
 r2_bucket = modal.CloudBucketMount(
     R2_BUCKET_NAME,
